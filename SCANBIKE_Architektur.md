@@ -118,7 +118,8 @@ Pflicht vor Pilotbetrieb:
 * Rechtsgrundlage dokumentieren (§ 63g StVG + Landesrecht, z. B. Landesmobilitätsgesetz BW seit 03/2025 [^2]), Zuständigkeit der Kommune
 * Datenschutz-Folgenabschätzung (DSFA), AV-Vertrag, Löschkonzept
 * Keine automatisierte Entscheidung i. S. v. Art. 22 DSGVO ohne menschliche Prüfung [^13]
-* Kennzeichnung am Rad („Kommunale Parkraumkontrolle – Kameraaufzeichnung“), Info-Datenschutzerklärung per QR
+* Status: privater Forschungsprototyp ohne öffentlichen Auftrag – neutraler Auftritt, keine Behörden-Kennzeichnung, keine Datenweitergabe an Behörden, Tests nur anonymisiert
+* Kennzeichnung am Rad („Forschungsprototyp – Kameraaufzeichnung“), Info-Datenschutzerklärung per QR
 * Speicher: Treffer bis Verfahrensende, Nichttreffer sofort löschen [^2]
 * Kritikpunkt aus Datenschutzsicht ausführlich bei dsn-group [^5]: Erforderlichkeit, Verhältnismäßigkeit, keine flächendeckende Bewegungsprofile
 

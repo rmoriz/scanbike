@@ -25,7 +25,7 @@ Vor Umbau wiegen und vermessen: zul. Gesamtgewicht, Schwerpunkt mit Aufbau, Brem
 * **Wetterschutz:** PETG-Hauben über Kameras (Hydrophob-Beschichtung), Dachplane PVC mit Klarsicht-Fenstern, Kameras schauen unter Traufkante heraus (Regen + Gegenlicht).
 * **Antennenmast:** GNSS-Antenne mittig Dach + 10 cm Groundplane (Alublech), Abstand >20 cm zu LTE-Antennen (Entkopplung), USB3-Kabel mit Ferrit (bekannte GNSS-Störung durch USB3/Realsense-Hardware [^6]).
 * **Diebstahl/Vandalismus:** alle Schrauben Torx-TR, Akku/Compute abschließbar, AirTag + GPS-Tracker separat.
-* **Sichtbarkeit:** umlaufend Reflexfolie, Schild „Kommunale Parkraumkontrolle“, 360°-LED gelb (nur bei Messfahrt an).
+* **Sichtbarkeit:** umlaufend Reflexfolie (Sicherheit), neutrales Schild „Prototyp – Kameraaufzeichnung (Forschung)“. Kein öffentlicher Auftrag → keine Behörden-Optik, keine Gelbleuchte mit Amts-Anmutung.
 
 Gewichtsbudget (Beispiel Wide mit E-Antrieb):
 
