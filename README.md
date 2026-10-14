@@ -14,6 +14,7 @@ ein Sachbearbeiter im Ordnungsamt gibt frei.
 | [SCANBIKE_Software_Architektur.md](SCANBIKE_Software_Architektur.md) | Edge-Pipeline (GStreamer + YOLOv8 + OCR auf Jetson Orin NX), Backend (PostGIS, Review-UI, OWiG-Export) |
 | [SCANBIKE_Parkzonen_Restbreiten.md](SCANBIKE_Parkzonen_Restbreiten.md) | Zonenkataster, Kartier-Workflow, automatische Restbreitenmessung ohne Absteigen |
 | [SCANBIKE_Umsetzungsplan.md](SCANBIKE_Umsetzungsplan.md) | Iterativer Plan in 6 Stufen ab vorhandenem Trike, ohne Wetterschutz |
+| [SCANBIKE_Billig_Prototyp.md](SCANBIKE_Billig_Prototyp.md) | PoC mit Consumer-Hardware (gebrauchte Insta360 + GoPro), ~750 € |
 
 ## Kartier-Artefakte
 
