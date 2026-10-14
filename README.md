@@ -13,6 +13,7 @@ ein Sachbearbeiter im Ordnungsamt gibt frei.
 | [SCANBIKE_Hardware_Netzwerk_Strom_Steuerung.md](SCANBIKE_Hardware_Netzwerk_Strom_Steuerung.md) | Trike-Aufbau, Sensorik, PoE-/LTE-Topologie, 75-W-Lastbilanz, Betriebsmodi |
 | [SCANBIKE_Software_Architektur.md](SCANBIKE_Software_Architektur.md) | Edge-Pipeline (GStreamer + YOLOv8 + OCR auf Jetson Orin NX), Backend (PostGIS, Review-UI, OWiG-Export) |
 | [SCANBIKE_Parkzonen_Restbreiten.md](SCANBIKE_Parkzonen_Restbreiten.md) | Zonenkataster, Kartier-Workflow, automatische Restbreitenmessung ohne Absteigen |
+| [SCANBIKE_Umsetzungsplan.md](SCANBIKE_Umsetzungsplan.md) | Iterativer Plan in 6 Stufen ab vorhandenem Trike, ohne Wetterschutz |
 
 ## Kartier-Artefakte
 
