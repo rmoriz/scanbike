@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="740" viewBox="0 0 960 740" font-family="sans-serif">
+<defs>
+<marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#333" stroke-width="1.5"/></marker>
+</defs>
+<rect x="0" y="0" width="960" height="740" fill="#ffffff"/>
+<text x="30" y="34" font-size="20" font-weight="bold">Scanbike Sensor-Rack – Schema (Draufsicht + Seite)</text>
+<text x="30" y="56" font-size="13" fill="#555555">Box Narrow außen 102 × 71,5 cm · innen 98,5 × ~70 cm · Bord 57 cm · W_vorne / W_hinten bitte messen und eintragen</text>
+
+<!-- ============ DRAUFSICHT ============ -->
+<text x="30" y="92" font-size="15" font-weight="bold">Draufsicht (vorne = oben, schmaler Bug)</text>
+<!-- Box außen, Trapez -->
+<polygon points="150,130 330,130 362,440 118,440" fill="#f2f2f2" stroke="#333333" stroke-width="2"/>
+<!-- Boxrand -->
+<polygon points="160,140 320,140 350,430 130,430" fill="none" stroke="#333333" stroke-width="1.5" stroke-dasharray="7 4"/>
+<text x="252" y="300" font-size="12" fill="#555555">Box</text>
+<!-- Rack-Innenplatte -->
+<rect x="190" y="170" width="100" height="220" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="240" y="280" font-size="12" fill="#1d4ed8" text-anchor="middle">Innen-</text>
+<text x="240" y="296" font-size="12" fill="#1d4ed8" text-anchor="middle">platte</text>
+<!-- Kegelfüße auf Rand -->
+<g fill="#ffffff" stroke="#b45309" stroke-width="2">
+<circle cx="163" cy="152" r="9"/><circle cx="317" cy="152" r="9"/>
+<circle cx="346" cy="414" r="9"/><circle cx="134" cy="414" r="9"/>
+</g>
+<g stroke="#b45309" stroke-width="1.5">
+<line x1="157" y1="152" x2="169" y2="152"/><line x1="163" y1="146" x2="163" y2="158"/>
+<line x1="311" y1="152" x2="323" y2="152"/><line x1="317" y1="146" x2="317" y2="158"/>
+<line x1="340" y1="414" x2="352" y2="414"/><line x1="346" y1="408" x2="346" y2="420"/>
+<line x1="128" y1="414" x2="140" y2="414"/><line x1="134" y1="408" x2="134" y2="420"/>
+</g>
+<text x="60" y="155" font-size="11" fill="#b45309">Kegelfüße auf</text>
+<text x="60" y="168" font-size="11" fill="#b45309">Boxrand (hinten</text>
+<text x="60" y="181" font-size="11" fill="#b45309">auf Langloch)</text>
+<!-- Seitenausleger klappbar -->
+<rect x="52" y="250" width="66" height="46" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="5 3"/>
+<rect x="362" y="250" width="66" height="46" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="5 3"/>
+<text x="30" y="315" font-size="11" fill="#059669">Ausleger klappbar</text>
+<text x="30" y="328" font-size="11" fill="#059669">(Kugelsperrbolzen)</text>
+<!-- Kameras -->
+<polygon points="240,96 230,118 250,118" fill="#dc2626"/>
+<text x="240" y="88" font-size="12" fill="#dc2626" text-anchor="middle">Front</text>
+<polygon points="52,262 74,254 74,278" fill="#dc2626"/>
+<text x="52" y="245" font-size="12" fill="#dc2626" text-anchor="middle">Li</text>
+<polygon points="428,262 406,254 406,278" fill="#dc2626"/>
+<text x="428" y="245" font-size="12" fill="#dc2626" text-anchor="middle">Re</text>
+<!-- Maßpfeile -->
+<line x1="150" y1="112" x2="330" y2="112" stroke="#333333" stroke-width="1" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="240" y="106" font-size="12" text-anchor="middle">W_vorne = ? messen</text>
+<line x1="118" y1="458" x2="362" y2="458" stroke="#333333" stroke-width="1" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="240" y="474" font-size="12" text-anchor="middle">W_hinten = ? messen</text>
+<line x1="96" y1="130" x2="96" y2="440" stroke="#333333" stroke-width="1" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="88" y="290" font-size="12" text-anchor="middle" transform="rotate(-90 88,290)">Länge innen 98,5</text>
+
+<!-- ============ SEITENANSICHT ============ -->
+<text x="520" y="92" font-size="15" font-weight="bold">Seitenansicht (Maße in cm)</text>
+<!-- Boden -->
+<line x1="520" y1="640" x2="930" y2="640" stroke="#333333" stroke-width="2"/>
+<text x="922" y="656" font-size="12">Boden</text>
+<!-- Räder angedeutet -->
+<circle cx="580" cy="612" r="28" fill="none" stroke="#333333" stroke-width="2"/>
+<circle cx="820" cy="612" r="28" fill="none" stroke="#333333" stroke-width="2"/>
+<!-- Box 57 hoch: 57*3=171 -->
+<rect x="550" y="469" width="300" height="171" fill="#f2f2f2" stroke="#333333" stroke-width="2"/>
+<!-- Rack-Außenrahmen auf Rand -->
+<line x1="550" y1="469" x2="850" y2="469" stroke="#b45309" stroke-width="4"/>
+<text x="858" y="472" font-size="11" fill="#b45309">Rahmen</text>
+<!-- gedämpfte Innenplatte mit Dämpfern -->
+<rect x="600" y="540" width="180" height="26" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<polyline points="620,469 612,490 628,490 620,511 612,532 620,540" fill="none" stroke="#1d4ed8" stroke-width="1.5"/>
+<polyline points="760,469 752,490 768,490 760,511 752,532 760,540" fill="none" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="700" y="530" font-size="11" fill="#1d4ed8" text-anchor="middle">Drahtseil-Dämpfer (4×)</text>
+<!-- Akku separat tief -->
+<rect x="600" y="596" width="110" height="32" fill="#e5e7eb" stroke="#333333" stroke-width="1.5"/>
+<text x="655" y="616" font-size="11" text-anchor="middle">Akku separat</text>
+<!-- Mast bis 135: 135*3=405 -> y=235 -->
+<line x1="700" y1="469" x2="700" y2="240" stroke="#333333" stroke-width="3"/>
+<rect x="678" y="212" width="44" height="28" fill="#dc2626"/>
+<text x="730" y="230" font-size="12" fill="#dc2626">Kamera ~135</text>
+<!-- Höhenmaß -->
+<line x1="900" y1="640" x2="900" y2="469" stroke="#333333" stroke-width="1" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="892" y="555" font-size="12" text-anchor="middle" transform="rotate(-90 892,555)">Bord 57</text>
+<line x1="916" y1="640" x2="916" y2="226" stroke="#333333" stroke-width="1" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="908" y="430" font-size="12" text-anchor="middle" transform="rotate(-90 908,430)">Objektiv ~135</text>
+<!-- Griffe -->
+<path d="M600,540 q-18,-14 0,-28" fill="none" stroke="#333333" stroke-width="2"/>
+<path d="M780,540 q18,-14 0,-28" fill="none" stroke="#333333" stroke-width="2"/>
+<text x="690" y="660" font-size="12" text-anchor="middle">Griffe · 1 Stecker Strom + 1× RJ45 · Ziel: Ein-/Ausbau &lt; 5 min</text>
+</svg>
