@@ -59,6 +59,26 @@ Anforderung: Global Shutter (Trike-Vibration + Fahrt), HDR >70 dB, IP65 oder Hau
 * Belichtung: 1/1000 s bei Tag (Bewegungsunschärfe <1 px bei 5 m/s), nachts IR-Blitz 850 nm gepulst (Achtung: StVZO-Blendverbot, nur indirekt/gepulst, Abstimmung nötig – Profi-ALPR-Kameras nutzen IR-Blitz + Filter [^7]).
 * Kalibrierung: intrinsisch (Schachbrett) + extrinsisch (LiDAR-/Laser-Kreuz + Maßband). Versionieren (`calib_v1.3`), bei jedem Evidence-Paket mitloggen.
 
+### 2.1.1 Kauf-Leitfaden Global Shutter (preiswert)
+
+Für Kennzeichen auf 2–7 m reichen **1–1,6 MP mono**: 1280 px auf ~6 m Bildbreite ≈ 210 px/m,
+52-cm-Schild ≈ 110 px (OCR braucht ~100 px). Mehr Pixel kosten nur Bandbreite und Inferenz-Zeit.
+
+**Klasse Bastel (30–90 €, UVC-Plug&Play, kein Hardware-Trigger):** Arducam OV9281 USB ~35–50 € [^13]
+bzw. MIPI B0223 für Jetson-CSI 52 $ [^14]; Arducam OV2311 USB (2 MP) ~60–90 € [^15] als beste
+Bastel-Wahl für Platten; ELP AR0144-Modul ~40–70 € [^16] als Einstieg.
+
+**Klasse China-Industrie neu (~240–280 €):** Dahua MER2-160-227U3C (IMX273, 1,6 MP, USB3 Vision)
+240 € [^17], GigE ab 263 € — echter Hardware-Trigger, GenICam, C-Mount, auf Jetson via Aravis.
+
+**Klasse Marken gebraucht (100–180 € + Objektiv):** Basler ace 1.3 MP mono (z. B. acA1300-60gm/30gm),
+eBay ~130–180 $ [^18], mit Objektiv ~150 $ [^19]; C-Mount 6–8 mm gebraucht ~30–60 €.
+Sensordatenblatt prüfen (ace-Reihe mischt Sensoren), Trigger-Eingang beachten; Shutter-Verschleiß
+gibt es nicht — prüfen: Sensorstaub (Weißbild), Gewindeschäden.
+
+**Empfehlung Trike:** Seiten = 2× Basler-ace-gebraucht oder 2× OV2311 (mono, NoIR für 850-nm-Option);
+Front = Farbe aus Bestand (GoPro). Seiten-Stereo gesamt ~150 € (Bastel) bis ~450 € (Marke) inkl. Objektive.
+
 Warum nicht Rolling-Shutter-Webcam: Vibration + Fahrt = schräge Kennzeichen, OCR bricht ein.
 
 ### 2.2 Positionierung
@@ -205,3 +225,10 @@ Umschaltung per beleuchtetem Wahlschalter am Lenker + Bestätigungstaster (Zweih
 [^10]: MDPI Sensors – Low-Cost GNSS PPP-RTK mit ZED-F9P: PPP-RTK ohne Basis möglich, Konvergenzzeit beachten. <https://www.mdpi.com/1424-8220/23/13/6074>
 [^11]: NVIDIA – Jetson Orin NX bis 100 TOPS bei 10–25 W; Nano bis 40 TOPS bei 7–15 W. <https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin>
 [^12]: Syslogic – Jetson Orin Super Mode: Nano 67 TOPS/25 W, NX 157 TOPS/40 W, höhere Taktraten. <https://www.syslogic.com/blog/jetson-orin-nano-nx-nvidia-performance-boost-opens-up-new-possibilities>
+[^13]: Arducam OV9281 USB Global-Shutter-Kamera (Amazon). <https://www.amazon.com/Arducam-Distortion-Microphones-Computer-Raspberry/dp/B096M5DKY6>
+[^14]: Arducam OV9281 MIPI für Jetson (B0223), 52 $. <https://www.arducam.com/blog/product/arducam-ov9281-mipi-1mp-monochrome-global-shutter-ir-camera-module-for-jetson-board>
+[^15]: Arducam OV2311 2MP Global-Shutter USB (Amazon). <https://www.amazon.com/Arducam-Monochrome-Distortion-Microphones-Compatible/dp/B096ZSSCGH>
+[^16]: ELP AR0144 Global-Shutter USB-Modul. <https://www.elpcctv.com/elp-ar0144-1280720-60fps-global-shutter-usb-camera-monochrome-with-550mm-varifocal-for-industrial-p-148.html>
+[^17]: VA Imaging – IMX273-Kameras, Dahua MER2 ab 240 €. <https://va-imaging.com/en-us/blogs/camera-image-sensors/cameras-with-sony-imx273-sensor-specs-prices-life-cycle>
+[^18]: eBay – Basler-Kameras gebraucht/refurbished. <https://www.ebay.com/b/basler-camera/bn_7024825287>
+[^19]: eBay – GigE-Kameras inkl. Basler ace mit Objektiv. <https://www.ebay.com/shop/camera-gige?_nkw=camera+gige>
