@@ -165,6 +165,23 @@ Alle Uhren NTP-synced, Nachweis über Chrony-Logs.
 * YOLOv8m-seg FP16 640px: ~25 ms, YOLOv8s-Plate: ~8 ms, Face-Blur n: ~6 ms, OCR: ~15 ms (je Crop) → Pipeline ~55 ms, 12 fps mit 2 Streams parallel machbar. Bei Engpass: auf `n`-Varianten oder DLA ausweichen, Frontkamera niedrigere Rate.
 * Referenz Basiswerte YOLOv8 (n/s/m/l/x, mAP vs. Latenz) siehe Ultralytics-Doku [^6]; Orin-Leistung bis 100 TOPS [^7], Super-Modus bis 157 TOPS [^8].
 
+## 9. Stream vs. Frames – Entscheidung: Frames, kein Stream
+
+Es wird **kein Videostream** ins Backoffice übertragen, sondern nur ausgewählte Event-Frames.
+Gründe:
+
+* **Bandbreite/Funklöcher:** 4 Kameras als Stream (≈ 8 Mbit/s Dauerlast) sind über LTE am Rad illusorisch. Ein Event (2 JPEGs + Metadaten ≈ 1 MB) geht per Store-and-forward mit Resume — 100 Events/Schicht ≈ 100 MB.
+* **Datenschutz:** Ein Dauer-Stream ist laufende Videoüberwachung des öffentlichen Raums und mit Datenminimierung/Zweckbindung kaum vereinbar (vgl. BW-Pilot: nur Verstoß-Daten speichern, Rest unverzüglich löschen [^3]). Ein im Stream übersehenes Gesicht ist bereits übertragen = bereits ein Verstoß. Bei Frames gilt: Blur auf Edge prüfen, dann hochladen; Backend verifiziert den Blur vor der Review-Anzeige ein zweites Mal.
+* **Kein Echtzeitbedarf:** Kein Fluchtfahrzeug, keine Schranke — Review in <30 s/Event genügt.
+
+**Frame-Auswahl pro Verdacht (Edge):** Burst von 3–5 Frames puffern, dann wählen —
+Kontext-Frame = schärfstes Bild (Laplacian-Varianz, Fahrzeug + Umgebung + ggf. Schild),
+Crop-Frame = höchste OCR-Konfidenz. Optional 5-s-Clip (niedrigbitratig, vorgeblurrt) als
+Bewegungskontext. Rest des Bursts und alles ohne Verdacht: löschen.
+
+**Ausnahmen:** Debug-Preview im Pilotbetrieb (480p, 1 fps, stark geblurrt, nur auf expliziten
+Fernwartungs-Knopf, nicht dauerhaft) sowie Metrik-Herzschlag ohne Bild (Position, Zähler, Status).
+
 ---
 
 ## Quellen
