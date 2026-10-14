@@ -107,6 +107,22 @@ füttert `parkzonen_beispiel.geojson` und wird später YOLO-Trainingsmaterial.
 
 Danach weiter mit Iteration 2–3 aus `SCANBIKE_Umsetzungsplan.md` (Jetson, Event-Pipeline).
 
+## 8. Warum (noch) keine Onboard-Unit
+
+Der PoC kommt bewusst ohne Rechner am Rad aus: aufzeichnen und loggen geht ohne,
+gerechnet wird zu Hause.
+
+* **Video:** nur Recording auf SD (Strom per Powerbank). YOLO, OCR und Blur laufen auf dem Laptop — eine Unit würde nur Strom fressen und Hitze produzieren.
+* **GPS:** nur Logging (M8T-Rohdaten, Handy-Track, GoPro-Telemetry), PPK-Auswertung zu Hause. Kein Echtzeit-Fix nötig, weil nichts live entschieden wird.
+* **Manuelle Meldungen:** Handy reicht (Foto mit GPS-/Zeitstempel). Optional Bluetooth-Fernauslöser (~15 €) am Lenker als Marker-Taster („hier prüfen“), später am Timestamp im Track wiederfinden. Oder OSMAnd-Favorit / simples HTML-Formular als PWA.
+
+**Nötig wird eine Unit erst ab:** Iteration 2 (Live-Erkennung), Iteration 3 (Anonymize-first und
+Event-Filter *vor* dem Upload — ohne Edge-Filter darf Rohvideo gar nicht hochgeladen werden,
+Datenminimierung), Upload-Queue mit Resume, Echtzeit-Feedback.
+
+**Kleinstmögliche Zwischenstufe (Komfort, kein Muss):** Raspberry Pi 5 (~100 €) als reiner Logger —
+NTP-Zeitserver für alle Geräte, sammelt NMEA, WLAN-Vorschau der Kameras.
+
 ---
 
 ## Quellen
