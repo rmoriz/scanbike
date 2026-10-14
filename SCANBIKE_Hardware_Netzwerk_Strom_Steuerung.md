@@ -66,7 +66,12 @@ Warum nicht Rolling-Shutter-Webcam: Vibration + Fahrt = schräge Kennzeichen, OC
 * **RTK-GNSS:** u-blox ZED-F9P, Multiband, GPS+GLONASS+Galileo+BeiDou gleichzeitig, cm-Genauigkeit mit Korrekturdaten, bis 10–20 Hz [^8][^9]. Antenne: u-blox ANN-MB oder Ardusimple Tripleband auf Groundplane.
 * **Korrektur:** NTRIP via LTE (SAPOS BW/DE), Fallback PPP-RTK ohne Basis (längere Konvergenz, für Test ok [^10]).
 * **IMU:** Bosch BNO085 (Neigung/Kompass) oder VectorNav VN-100 (ab LiDAR-Phase). Montage starr auf Sensorplatte, Achsen dokumentieren.
-* **Odometrie:** Reed/Hall am Hinterrad + E-Bike-Tacho. Überbrückt GNSS-Schatten (Häuserschluchten) für 10–30 s.
+* **Odometrie (Pflicht ab Iteration 1, ~25 €):** Radimpulse stützen Position und Heading zwischen GNSS-Fixes, frieren die Position im Stand ein (Zero-Velocity-Update, kein Ampel-Schmieren) und überbrücken GNSS-Schatten für 10–30 s. Konkrete Kaufempfehlung:
+  * Hall-Sensor-Modul KY-003 (TLE4906L, 5 V, Open-Collector, ~4 €) — kein Prellen wie Reedkontakt, mit Schrumpfschlauch + Heißkleber wetterfest genug für Trockenbetrieb
+  * 6× Neodym-Magnet 10×3 mm N35 (~8 €), gleichmäßig am Hinterrad verteilt kleben → 6 Pulse/Umdrehung (bei 2 m/s noch ~5 Hz, fein genug für langsames Schieben und Anfahren)
+  * Raspberry Pi Pico (~6 €) als Zähler: Interrupt pro Puls, sendet `ticks, timestamp_ms` per USB-Serial an Jetson — saubere Zeiten ohne GPIO-Jitter am Hauptprozessor
+  * Montage: Sensor an Ketten-/Sitzstrebe mit Kabelbindern + Abstandshalter, Luftspalt Magnet↔Sensor 3–8 mm, Kabel entlang Bremszug nach vorne
+  * Kalibrierung: Abrolltest (3× 10 m schieben, Mittelwert) → `m_pro_tick` in Config; E-Bike-Tacho nur als Plausibilität, kein Eingriff in den Motor-Kabelbaum (Garantie)
 * **Zeitsync:** GNSS-PPS → PTP-Master auf Compute, Kameras via Software-PTP ( GigE) oder Trigger-Board (z. B. Arducam Trigger). Ziel <5 ms Offset, sonst Pose↔Bild-Versatz bei 5 m/s = 2,5 cm pro ms.
 
 Praxis-Hinweis: USB3 stört GNSS L1/L2 – Kabel schirmen, Antenne weg von Compute verlegen [^6].
