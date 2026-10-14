@@ -28,6 +28,16 @@ Nacht-/Regenbetrieb, Live-Erkennung. Alles außerhalb ±5 m GPS-Toleranz ist „
 
 **~450-€-Kernpaket:** X3 + Hero 10 gebraucht. Mit RTK-Puck ~750 €, ohne (Handy-GPS) ~500 €.
 
+### Variante mit 2× Hero 8 (vorhanden, 0 €) — empfohlen
+
+Zwei gleiche Kameras gratis sind besser als jede Kaufempfehlung:
+
+* **Links + rechts:** je eine Hero 8, identische Einstellungen (gleiche Farbabstimmung und Geometrie — Vorteil gegenüber Mischbestückung). 4K reicht auf 2–7 m Seitendistanz für Kennzeichen + Bordstein.
+* **Front:** Handy (reicht für Kontext/Schilder-Übersicht).
+* **Kosten:** nur noch RTK-Puck (~300 €) + Halter/Strom (~90 €) = **~400 €**; ohne Puck (Handy-GPS) **~90 €**.
+* Beide Hero 8 per App/Remote gleichzeitig starten, dazu weiter Klatsch-Sync (Abschnitt 4).
+* 360-Kamera entfällt — Reframing-Workflow entfällt ebenfalls, dafür zwei normale MP4-Files.
+
 **Gebrauchtkauf-Check:** Linse gegen Licht prüfen (Kratzer = Killer, bei 360-Linsen fatal fürs Stitching),
 Akkus als Verschleiß einpreisen (Blähakkus ersetzen), Dichtungen alter Geräte nicht mehr trauen —
 passt zum reinen Trockenbetrieb.
