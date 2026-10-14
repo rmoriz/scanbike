@@ -1,0 +1,37 @@
+{
+  "type": "FeatureCollection",
+  "name": "scanbike_parkzonen_beispiel",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::25832" } },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "layer": "zones", "kind": "bucht", "zone_name": "Bewohner S-Nord Bucht P1", "seite": "links", "zeitregel": {"modus": "bewohner_oder_ticket", "max_min": 120}, "quelle": "mapping_mode", "map_version": "v0.1" },
+      "geometry": { "type": "Polygon", "coordinates": [[[548000, 5406000], [548020, 5406000], [548020, 5406004], [548000, 5406004], [548000, 5406000]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "layer": "zones", "kind": "halteverbot", "seite": "links", "zeitregel": {"schild": "283-10", "von": "Mast 12", "bis": "Einmündung"}, "quelle": "schilderkataster", "map_version": "v0.1" },
+      "geometry": { "type": "LineString", "coordinates": [[548020, 5406002], [548060, 5406002]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "layer": "zones", "kind": "gehweg", "seite": "links", "zeitregel": {}, "quelle": "alkis", "map_version": "v0.1", "notiz": "Gehwegpolygon, Restbreite Soll 1.5m" },
+      "geometry": { "type": "Polygon", "coordinates": [[[548000, 5406004], [548060, 5406004], [548060, 5406007], [548000, 5406007], [548000, 5406004]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "layer": "zones", "kind": "e_laden", "zone_name": "E-Laden 2 Plätze", "zeitregel": {"max_min": 240, "stecker": true}, "quelle": "manuell", "map_version": "v0.1" },
+      "geometry": { "type": "Polygon", "coordinates": [[[548062, 5406000], [548074, 5406000], [548074, 5406004], [548062, 5406004], [548062, 5406000]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "layer": "schilder", "typ": "283-10", "wirkseite": "links", "wirklaenge_m": 40, "blickrichtung_deg": 270, "map_version": "v0.1" },
+      "geometry": { "type": "Point", "coordinates": [[548020, 5406001]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "layer": "implizit_verbote", "grund": "kreuzung_5m", "map_version": "v0.1" },
+      "geometry": { "type": "Polygon", "coordinates": [[[548075, 5405998], [548085, 5405998], [548085, 5406008], [548075, 5406008], [548075, 5405998]]] }
+    }
+  ]
+}
