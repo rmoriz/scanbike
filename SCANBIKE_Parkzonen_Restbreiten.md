@@ -97,6 +97,16 @@ lila = E-Laden, grau-schraffiert = Gehweg) → als GeoPackage speichern.
 3. Backend prüft final exakt + Permit-Abgleich (Bewohner/Parkschein-Hash).
 4. Ohne `RTK-Fixed/Float` kein Treffer, nur „unsicher“ loggen (Zonen-Grenzen!).
 
+### 7.1 Irreguläre Parkwinkel (z. B. 90° zum Radweg)
+
+Kein Sonderfall nötig: Das Matching ist maskenbasiert, die Orientierung ist egal. Quersteller
+erzeugen großen Polygon-Overlap → Treffer eher zuverlässiger als knapp parkende Parallelparker.
+Optional Winkel per OBB mitloggen als Label („quer über Radweg“) für Review und Statistik.
+Restbreite als Minimum über die Messstrecke (Hindernis + 1 m beidseitig), nicht mitteln.
+Kennzeichen: beide Platten (Front + Seite) suchen, beste Konfidenz gewinnt; unlesbar → Event mit
+„Platte unlesbar“, Sachbearbeiter entscheidet anhand Kontextbild. Halb-halb-Fälle (Gehweg +
+Fahrbahn): beide Overlaps prüfen, ein Event mit zwei Regelgründen.
+
 ## 8. Restbreite automatisch messen ohne Absteigen
 
 ### 8.1 Was zählt
