@@ -7,11 +7,11 @@
 
 ## 1. Leitprinzipien
 
-1. **Anonymize-first:** Gesichter/Kennzeichen Unbeteiligter verlassen nie das Fahrzeug. Nur Verdachts-Events werden übertragen – analog zu ARGOS „Auswertung im Fahrzeug“ [1].
-2. **Mensch entscheidet:** Kein Bescheid ohne Sachbearbeiter-Freigabe (Art. 22 DSGVO [2]).
+1. **Anonymize-first:** Gesichter/Kennzeichen Unbeteiligter verlassen nie das Fahrzeug. Nur Verdachts-Events werden übertragen – analog zu ARGOS „Auswertung im Fahrzeug“ [^1].
+2. **Mensch entscheidet:** Kein Bescheid ohne Sachbearbeiter-Freigabe (Art. 22 DSGVO [^2]).
 3. **Beweis statt Bauchgefühl:** Jedes Event mit Zeit, Pose, Kalibrierung, Hash.
 4. **Offline-fähig:** Volle Erfassung ohne Netz, Upload als Warteschlange.
-5. **Datenminimierung:** Ringpuffer statt Dauerarchiv; Nichttreffer sofort löschen [3][4].
+5. **Datenminimierung:** Ringpuffer statt Dauerarchiv; Nichttreffer sofort löschen [^3][^4].
 
 ## 2. Gesamt-Stack
 
@@ -32,9 +32,9 @@ Sprachen: Python (Pipeline, Modelle), Rust oder Go (Uploader, Hash), TypeScript/
 ### 3.1 Basis
 
 * OS: Jetson Linux (Ubuntu 22.04), JetPack 6, Chrony mit GNSS-PPS
-* Middleware: ROS 2 Jazzy nur für Recording/Sync (`rosbag2`, `ublox`-/`nmea`-Treiber [5]), Inferenz bewusst ohne ROS (GStreamer + TensorRT direkt = weniger Latenz)
+* Middleware: ROS 2 Jazzy nur für Recording/Sync (`rosbag2`, `ublox`-/`nmea`-Treiber [^5]), Inferenz bewusst ohne ROS (GStreamer + TensorRT direkt = weniger Latenz)
 * Container: `capture`, `perception`, `fusion`, `store`, `ui-edge` (je 1 Docker, Updates via Mender/OSTree)
-* Modelle: Ultralytics YOLOv8 (anchor-free, Echtzeit, n/s/m-Varianten [6]) als Basis, TensorRT FP16/INT8 kompiliert
+* Modelle: Ultralytics YOLOv8 (anchor-free, Echtzeit, n/s/m-Varianten [^6]) als Basis, TensorRT FP16/INT8 kompiliert
 
 ### 3.2 Pipeline-Stufen
 
@@ -53,7 +53,7 @@ Sprachen: Python (Pipeline, Modelle), Rust oder Go (Uploader, Hash), TypeScript/
 * Kennzeichen Unbeteiligter (Gegenfahrbahn, zu weit) → Blur, außer Zielfahrzeug im Verdachts-Polygon
 * Erst danach darf ein Frame auf NVMe
 
-**D. Perception (Jetson Orin NX 16 GB: bis 100 TOPS @10–25 W [7], Super bis 157 TOPS [8])**
+**D. Perception (Jetson Orin NX 16 GB: bis 100 TOPS @10–25 W [^7], Super bis 157 TOPS [^8])**
 * `yolov8m-seg` (Fahrzeug-Segmentierung) → Maske pro parkendem Fahrzeug
 * `yolov8s-licenseplate` (Custom-Training auf deutschen EU-Kennzeichen, 3–8 m Distanz) → Box + Crop
 * `yolov8s-sign` (Z. 283/286, Behinderten-/E-Schild, Feuerwehrzufahrt) → Stützinformation
@@ -63,7 +63,7 @@ Sprachen: Python (Pipeline, Modelle), Rust oder Go (Uploader, Hash), TypeScript/
 **E. OCR**
 * Crop → Deblur/Super-Res → OCR (RapidOCR / PaddleOCR + deutsche Plate-Heuristik: 1–3 Buchstaben, E/H-Suffix, FE-Schrift-Toleranz)
 * Output: Text + Konfidenz. Schwelle: <0,85 → „unsicher“, Review muss manuell lesen
-* Profi-Referenz: VITRONIC/Jenoptik lesen mehrspurig bei Fahrt/Wetter [9][10] – Scanbike-Ziel einfacher (nah, langsam), aber deutsche Umlaute/Stadt-Kürzel als Wörterbuch hinterlegen
+* Profi-Referenz: VITRONIC/Jenoptik lesen mehrspurig bei Fahrt/Wetter [^9][^10] – Scanbike-Ziel einfacher (nah, langsam), aber deutsche Umlaute/Stadt-Kürzel als Wörterbuch hinterlegen
 
 **F. Fusion & Regel-Vorfilter Edge**
 * Projiziere Fahrzeug-Maske via Kalibrierung + Pose in Weltkoordinaten
@@ -112,7 +112,7 @@ zones(id, geom, kind); -- halteverbot, bewohner, e-laden, behindert, feuerwehr
 decisions(event_id, reviewer, decision, reason, decided_at);
 ```
 
-* Kennzeichen in DB nur als salted Hash + Verschlüsselung ruhend (vgl. BW: verschlüsselte Übertragung [3])
+* Kennzeichen in DB nur als salted Hash + Verschlüsselung ruhend (vgl. BW: verschlüsselte Übertragung [^3])
 * Rohbilder nur bei `status=verdacht`, Zugriff per Rolle (Sachbearbeiter, DSB-Audit)
 
 ### 4.3 GIS-Regelengine
@@ -122,8 +122,8 @@ Prüfung in Reihenfolge:
 
 1. Liegt Footprint in `halteverbot`/`feuerwehr`/`kreuzung_5m`? → Treffer
 2. Liegt Footprint auf `gehweg`/`radweg`? + Restbreite → Treffer mit Maß
-3. Liegt Punkt in bewirtschafteter Zone? → Permit-Abgleich; ohne gültige Berechtigung → Treffer („Schwarzparken“ [4])
-4. Sonst → Nichttreffer → sofort löschen [3]
+3. Liegt Punkt in bewirtschafteter Zone? → Permit-Abgleich; ohne gültige Berechtigung → Treffer („Schwarzparken“ [^4])
+4. Sonst → Nichttreffer → sofort löschen [^3]
 
 Kartenquelle: ALKIS + Verkehrszeichenkataster + manuell gepflegte Hotspot-Layer. Kachel-Cache aufs Edge-Rad für Offline-Vorfilter.
 
@@ -146,15 +146,15 @@ Alle Uhren NTP-synced, Nachweis über Chrony-Logs.
 ## 6. Datenschutz- und Sicherheitsarchitektur
 
 * DSFA vor Pilot, AV-Vertrag, Rollenkonzept, Verschlüsselung TLS 1.3 + LUKS + S3-SSE
-* Löschfristen als Code (`retention-cleaner`): Nichttreffer unverzüglich/≤72 h, Treffer bis Verfahrensende [3]
+* Löschfristen als Code (`retention-cleaner`): Nichttreffer unverzüglich/≤72 h, Treffer bis Verfahrensende [^3]
 * Keine Gesichts-/Personen-DB, kein Tracking über Events hinweg (kein Re-ID)
 * Audit-Log unveränderbar, jährlicher DSB-Export
-* Rechtliche Leitplanken: § 63g StVG [11][12], ADAC-Einordnung Datenminimierung/Zweckbindung [4], dsn-group-Kritikpunkte [13], kein Fahndungsabgleich ohne Norm [14]
+* Rechtliche Leitplanken: § 63g StVG [^11][^12], ADAC-Einordnung Datenminimierung/Zweckbindung [^4], dsn-group-Kritikpunkte [^13], kein Fahndungsabgleich ohne Norm [^14]
 
 ## 7. DevOps, Test, Qualität
 
 * Repo-Layout: `edge/`, `backend/`, `models/`, `gis/`, `docs/`
-* CI: Lint + Unit + Modell-Eval (Precision/Recall Plate, mAP [6]) + GIS-Regression (100 annotierte Szenen)
+* CI: Lint + Unit + Modell-Eval (Precision/Recall Plate, mAP [^6]) + GIS-Regression (100 annotierte Szenen)
 * Testdaten: eigene Aufnahmen mit verpixelten Schildern + synthetische Kennzeichen (keine echten Plates in Git!)
 * Kalibrier-Artefakt versioniert, Reprojektionsfehler-Gate <2 px
 * Metriken: OCR-Accuracy @0,85, False-Positive-Rate <5 %, Pose-HDOP, Upload-Lag
@@ -163,23 +163,23 @@ Alle Uhren NTP-synced, Nachweis über Chrony-Logs.
 ## 8. Leistungsbudget (Orin NX)
 
 * YOLOv8m-seg FP16 640px: ~25 ms, YOLOv8s-Plate: ~8 ms, Face-Blur n: ~6 ms, OCR: ~15 ms (je Crop) → Pipeline ~55 ms, 12 fps mit 2 Streams parallel machbar. Bei Engpass: auf `n`-Varianten oder DLA ausweichen, Frontkamera niedrigere Rate.
-* Referenz Basiswerte YOLOv8 (n/s/m/l/x, mAP vs. Latenz) siehe Ultralytics-Doku [6]; Orin-Leistung bis 100 TOPS [7], Super-Modus bis 157 TOPS [8].
+* Referenz Basiswerte YOLOv8 (n/s/m/l/x, mAP vs. Latenz) siehe Ultralytics-Doku [^6]; Orin-Leistung bis 100 TOPS [^7], Super-Modus bis 157 TOPS [^8].
 
 ---
 
 ## Quellen
 
-[1] ARGOS Scan-Cars: Auswertung im Fahrzeug, nur Falschparker übertragen. http://argos-cars.de
-[2] Art. 22 DSGVO – Automatisierte Entscheidungen. https://dsgvo-gesetz.de/art-22-dsgvo
-[3] VM Baden-Württemberg – Scan-Fahrzeuge Praxistest: Datenarten, Verschlüsselung, Löschung. https://vm.baden-wuerttemberg.de/de/politik-zukunft/zukunftskonzepte/digitale-mobilitaet/scan-fahrzeuge-im-praxistest-schnellere-parkraumkontrolle-in-innenstaedten
-[4] ADAC – Scan Cars Regeln/Datenschutz: § 63g StVG, 1000 Kennzeichen/h, Datenminimierung. https://www.adac.de/verkehr/recht/verkehrsvorschriften-deutschland/scan-cars-was-ist-erlaubt
-[5] Ardusimple – ZED-F9P in ROS 2 Jazzy integrieren. https://www.ardusimple.com/tutorials/how-to-integrate-u-blox-zed-f9p-gnss-rtk-receiver-into-ros-2-jazzy
-[6] Ultralytics – YOLOv8 Doku: anchor-free, Accuracy-Speed-Tradeoff, Modellvarianten. https://docs.ultralytics.com/models/yolov8
-[7] NVIDIA – Jetson Orin NX bis 100 TOPS (10–25 W). https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin
-[8] Syslogic – Super Mode: NX 157 TOPS/40 W, Nano 67 TOPS. https://www.syslogic.com/blog/jetson-orin-nano-nx-nvidia-performance-boost-opens-up-new-possibilities
-[9] VITRONIC – Automatische Kennzeichenerkennung. https://www.vitronic.com/de-de/verkehrstechnik/automatische-kennzeichenerkennung
-[10] Jenoptik – Kennzeichenerfassung VECTOR. https://www.jenoptik.de/produkte/zivile-sicherheit/kennzeichenerfassung
-[11] GAR NRW – § 63g StVG seit 01.07.2026. https://gar-nrw.de/news/parkraumkontrolle-per-scan-fahrzeug-was-kommunen-jetzt-wissen-muessen
-[12] ihgp-recht – § 63g StVG Erhebung/Löschfristen. https://ihgp-recht.de/parkraumkontrolle-digital
-[13] dsn-group – Scan-Cars Datenschutz. https://www.dsn-group.de/datenschutz-notizen/scan-cars-in-deutschland
-[14] Bundestag Drucksache 21/3505 – Fahndungsabgleich-Debatte. https://dserver.bundestag.de/btd/21/035/2103505.pdf
+[^1]: ARGOS Scan-Cars: Auswertung im Fahrzeug, nur Falschparker übertragen. <http://argos-cars.de>
+[^2]: Art. 22 DSGVO – Automatisierte Entscheidungen. <https://dsgvo-gesetz.de/art-22-dsgvo>
+[^3]: VM Baden-Württemberg – Scan-Fahrzeuge Praxistest: Datenarten, Verschlüsselung, Löschung. <https://vm.baden-wuerttemberg.de/de/politik-zukunft/zukunftskonzepte/digitale-mobilitaet/scan-fahrzeuge-im-praxistest-schnellere-parkraumkontrolle-in-innenstaedten>
+[^4]: ADAC – Scan Cars Regeln/Datenschutz: § 63g StVG, 1000 Kennzeichen/h, Datenminimierung. <https://www.adac.de/verkehr/recht/verkehrsvorschriften-deutschland/scan-cars-was-ist-erlaubt>
+[^5]: Ardusimple – ZED-F9P in ROS 2 Jazzy integrieren. <https://www.ardusimple.com/tutorials/how-to-integrate-u-blox-zed-f9p-gnss-rtk-receiver-into-ros-2-jazzy>
+[^6]: Ultralytics – YOLOv8 Doku: anchor-free, Accuracy-Speed-Tradeoff, Modellvarianten. <https://docs.ultralytics.com/models/yolov8>
+[^7]: NVIDIA – Jetson Orin NX bis 100 TOPS (10–25 W). <https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin>
+[^8]: Syslogic – Super Mode: NX 157 TOPS/40 W, Nano 67 TOPS. <https://www.syslogic.com/blog/jetson-orin-nano-nx-nvidia-performance-boost-opens-up-new-possibilities>
+[^9]: VITRONIC – Automatische Kennzeichenerkennung. <https://www.vitronic.com/de-de/verkehrstechnik/automatische-kennzeichenerkennung>
+[^10]: Jenoptik – Kennzeichenerfassung VECTOR. <https://www.jenoptik.de/produkte/zivile-sicherheit/kennzeichenerfassung>
+[^11]: GAR NRW – § 63g StVG seit 01.07.2026. <https://gar-nrw.de/news/parkraumkontrolle-per-scan-fahrzeug-was-kommunen-jetzt-wissen-muessen>
+[^12]: ihgp-recht – § 63g StVG Erhebung/Löschfristen. <https://ihgp-recht.de/parkraumkontrolle-digital>
+[^13]: dsn-group – Scan-Cars Datenschutz. <https://www.dsn-group.de/datenschutz-notizen/scan-cars-in-deutschland>
+[^14]: Bundestag Drucksache 21/3505 – Fahndungsabgleich-Debatte. <https://dserver.bundestag.de/btd/21/035/2103505.pdf>

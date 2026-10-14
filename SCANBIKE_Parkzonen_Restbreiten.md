@@ -8,8 +8,8 @@
 ## 1. Warum ein Zonenkataster nötig ist
 
 Das Scanbike sieht „da steht ein Auto“, aber erst die Karte sagt „dort darf es nicht stehen“.
-Scan-Cars gleichen Kennzeichen mit Parkberechtigungen ab [1] und speichern bei Verstoß Bild,
-Kennzeichen, Ort und Zeit, sonst wird unverzüglich gelöscht [2]. Das setzt voraus, dass
+Scan-Cars gleichen Kennzeichen mit Parkberechtigungen ab [^1] und speichern bei Verstoß Bild,
+Kennzeichen, Ort und Zeit, sonst wird unverzüglich gelöscht [^2]. Das setzt voraus, dass
 Verbots- und Erlaubnis-Polygone bekannt sind.
 
 ## 2. Layer-Modell (4 Schichten)
@@ -35,9 +35,9 @@ wo meist kein Schild steht.
 | `implizit_verbote` | Polygon/Linie | `grund: kreuzung_5m, bordsteinabsenkung, haltestelle_15m` |
 
 OSM-Vorbild für straßenbegleitendes Parken: `parking:left/right/both=lane/street_side/on_kerb/half_on_kerb/no`
-mit `orientation=parallel/perpendicular` [3]; neues Schema nach 2022 nutzt `parking:side` [4][5].
+mit `orientation=parallel/perpendicular` [^3]; neues Schema nach 2022 nutzt `parking:side` [^4][^5].
 Für Scanbike eigene PostGIS-Tabellen führen — OSM ist zu lückenhaft für Bußgeld.
-ALKIS liefert Flurstücke, Nutzung, Gebäude und Hausnummern als Basis [6][7],
+ALKIS liefert Flurstücke, Nutzung, Gebäude und Hausnummern als Basis [^6][^7],
 aber keine Halteverbote — dafür Verkehrszeichenkataster + eigene Befahrung.
 
 ## 4. Datenmodell
@@ -135,24 +135,24 @@ Vollausbau = LiDAR quer unter Dach; dichter 2D-Scan durch Akkumulation via Odome
   Gate: Reprojektionsfehler < 2 px, sonst kein Scan-Modus.
 * Immer `breite ± unsicherheit` loggen, z. B. `0,92 m ± 0,05 m`.
 * Bei `RTK-Float/Single`, Regen/Gegenlicht oder Verdeckung nur „Schätzung“, kein Treffer.
-* GNSS-Störer beachten: USB3-Kabel schirmen, Antenne mit Abstand zu Compute [8].
+* GNSS-Störer beachten: USB3-Kabel schirmen, Antenne mit Abstand zu Compute [^8].
 
 ---
 
 ## Quellen
 
-[1] ADAC – Scan Cars: Was ist erlaubt? Bis 1000 Kennzeichen/h, § 63g StVG, Datenminimierung.
-https://www.adac.de/verkehr/recht/verkehrsvorschriften-deutschland/scan-cars-was-ist-erlaubt
-[2] VM Baden-Württemberg – Scan-Fahrzeuge im Praxistest: Bild/Kennzeichen/Ort/Zeit,
-Verschlüsselung, Löschung. https://vm.baden-wuerttemberg.de/de/politik-zukunft/zukunftskonzepte/digitale-mobilitaet/scan-fahrzeuge-im-praxistest-schnellere-parkraumkontrolle-in-innenstaedten
-[3] OSM Wiki – Street parking (Tagging-Tabelle lane/street_side/on_kerb).
-https://wiki.openstreetmap.org/wiki/Street_parking
-[4] OSM Wiki – Tag:parking=lane. https://wiki.openstreetmap.org/wiki/Tag:parking%3Dlane
-[5] OSM Wiki – Key:parking:lane (both/left/right, 2022 neu geordnet).
-https://wiki.openstreetmap.org/wiki/Key:parking:lane
-[6] IOER Monitor – ALKIS: bundeseinheitliches Liegenschaftskataster aus ALK+ALB (AdV).
-https://www.ioer-monitor.de/en/methodology/glossary/a/alkis
-[7] CLGE – The ALKIS Approach (AFIS-ALKIS-ATKIS, GeoInfoDok, NAS).
-https://www.clge.eu/wp-content/uploads/2012/05/alkis.pdf
-[8] u-blox Community – GNSS-Interferenz durch USB3/Realsense bei Kompakt-Rovern.
-https://portal.u-blox.com/s/question/0D5Oj00000r21SyKAI/ublox-zedf9p-how-to-mitigate-gnss-interference-from-intel-realsense-d405-in-ultracompact-rover
+[^1]: ADAC – Scan Cars: Was ist erlaubt? Bis 1000 Kennzeichen/h, § 63g StVG, Datenminimierung.
+<https://www.adac.de/verkehr/recht/verkehrsvorschriften-deutschland/scan-cars-was-ist-erlaubt>
+[^2]: VM Baden-Württemberg – Scan-Fahrzeuge im Praxistest: Bild/Kennzeichen/Ort/Zeit,
+Verschlüsselung, Löschung. <https://vm.baden-wuerttemberg.de/de/politik-zukunft/zukunftskonzepte/digitale-mobilitaet/scan-fahrzeuge-im-praxistest-schnellere-parkraumkontrolle-in-innenstaedten>
+[^3]: OSM Wiki – Street parking (Tagging-Tabelle lane/street_side/on_kerb).
+<https://wiki.openstreetmap.org/wiki/Street_parking>
+[^4]: OSM Wiki – Tag:parking=lane. <https://wiki.openstreetmap.org/wiki/Tag:parking%3Dlane>
+[^5]: OSM Wiki – Key:parking:lane (both/left/right, 2022 neu geordnet).
+<https://wiki.openstreetmap.org/wiki/Key:parking:lane>
+[^6]: IOER Monitor – ALKIS: bundeseinheitliches Liegenschaftskataster aus ALK+ALB (AdV).
+<https://www.ioer-monitor.de/en/methodology/glossary/a/alkis>
+[^7]: CLGE – The ALKIS Approach (AFIS-ALKIS-ATKIS, GeoInfoDok, NAS).
+<https://www.clge.eu/wp-content/uploads/2012/05/alkis.pdf>
+[^8]: u-blox Community – GNSS-Interferenz durch USB3/Realsense bei Kompakt-Rovern.
+<https://portal.u-blox.com/s/question/0D5Oj00000r21SyKAI/ublox-zedf9p-how-to-mitigate-gnss-interference-from-intel-realsense-d405-in-ultracompact-rover>

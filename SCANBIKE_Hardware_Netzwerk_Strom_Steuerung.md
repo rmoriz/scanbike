@@ -9,10 +9,10 @@
 
 ### 1.1 Bakfiets CargoTrike – Annahmen
 
-* Dreirad: 2 gelenkte Vorderräder + 1 Hinterrad, Lenkstabilisator ab Werk [1]
-* Classic Wide: ca. 210 cm lang, ca. 85–95 cm breit, Box-Boden ca. 86×65 cm [2]; Narrow-Variante ca. 210×~80 cm [3]
-* Eigengewicht >50 kg ohne E-Antrieb [4]; Lasten-Trikes generell 100–300 kg Tragfähigkeit [5]
-* Vorteil: kippsicher im Stand/langsam [1] → Kalibrierung stabil, ideal für 8–18 km/h Scan-Tempo
+* Dreirad: 2 gelenkte Vorderräder + 1 Hinterrad, Lenkstabilisator ab Werk [^1]
+* Classic Wide: ca. 210 cm lang, ca. 85–95 cm breit, Box-Boden ca. 86×65 cm [^2]; Narrow-Variante ca. 210×~80 cm [^3]
+* Eigengewicht >50 kg ohne E-Antrieb [^4]; Lasten-Trikes generell 100–300 kg Tragfähigkeit [^5]
+* Vorteil: kippsicher im Stand/langsam [^1] → Kalibrierung stabil, ideal für 8–18 km/h Scan-Tempo
 
 Vor Umbau wiegen und vermessen: zul. Gesamtgewicht, Schwerpunkt mit Aufbau, Bremsleistung (Scheibenbremse empfohlen).
 
@@ -23,7 +23,7 @@ Vor Umbau wiegen und vermessen: zul. Gesamtgewicht, Schwerpunkt mit Aufbau, Brem
 * **Bodenwanne:** 12 mm Siebdruckplatte in Box, darauf 19"-halb-Tray für Akku + Compute (tief = Schwerpunkt unten). Anti-Rutsch, Kondensat-Ablauf.
 * **Dachrahmen:** 4× Alu-Profil 20×20 (Item/Motedis), Höhe Oberkante 1,50 m über Boden. Oben Sensorplatte 60×80 cm, 4× Sorbothane-Dämpfer 30 Shore.
 * **Wetterschutz:** PETG-Hauben über Kameras (Hydrophob-Beschichtung), Dachplane PVC mit Klarsicht-Fenstern, Kameras schauen unter Traufkante heraus (Regen + Gegenlicht).
-* **Antennenmast:** GNSS-Antenne mittig Dach + 10 cm Groundplane (Alublech), Abstand >20 cm zu LTE-Antennen (Entkopplung), USB3-Kabel mit Ferrit (bekannte GNSS-Störung durch USB3/Realsense-Hardware [6]).
+* **Antennenmast:** GNSS-Antenne mittig Dach + 10 cm Groundplane (Alublech), Abstand >20 cm zu LTE-Antennen (Entkopplung), USB3-Kabel mit Ferrit (bekannte GNSS-Störung durch USB3/Realsense-Hardware [^6]).
 * **Diebstahl/Vandalismus:** alle Schrauben Torx-TR, Akku/Compute abschließbar, AirTag + GPS-Tracker separat.
 * **Sichtbarkeit:** umlaufend Reflexfolie, Schild „Kommunale Parkraumkontrolle“, 360°-LED gelb (nur bei Messfahrt an).
 
@@ -40,7 +40,7 @@ Gewichtsbudget (Beispiel Wide mit E-Antrieb):
 | Reserve | 10 |
 | **Summe Aufbau ohne Fahrer** | **~29** |
 
-Mit Fahrer und Trike-Eigengewicht im Rahmen der 100–300 kg-Klasse [5], aber Bremsprobe Pflicht.
+Mit Fahrer und Trike-Eigengewicht im Rahmen der 100–300 kg-Klasse [^5], aber Bremsprobe Pflicht.
 
 ## 2. Sensorik – Auswahl und Montage
 
@@ -56,20 +56,20 @@ Anforderung: Global Shutter (Trike-Vibration + Fahrt), HDR >70 dB, IP65 oder Hau
 | Heck | 5 MP GS | 6 mm | Nachweiskette, zweite Perspektive | 2–10 m |
 
 * Auslösung: 10–15 fps im Scan-Modus, 1 fps im Transit (Strom sparen).
-* Belichtung: 1/1000 s bei Tag (Bewegungsunschärfe <1 px bei 5 m/s), nachts IR-Blitz 850 nm gepulst (Achtung: StVZO-Blendverbot, nur indirekt/gepulst, Abstimmung nötig – Profi-ALPR-Kameras nutzen IR-Blitz + Filter [7]).
+* Belichtung: 1/1000 s bei Tag (Bewegungsunschärfe <1 px bei 5 m/s), nachts IR-Blitz 850 nm gepulst (Achtung: StVZO-Blendverbot, nur indirekt/gepulst, Abstimmung nötig – Profi-ALPR-Kameras nutzen IR-Blitz + Filter [^7]).
 * Kalibrierung: intrinsisch (Schachbrett) + extrinsisch (LiDAR-/Laser-Kreuz + Maßband). Versionieren (`calib_v1.3`), bei jedem Evidence-Paket mitloggen.
 
 Warum nicht Rolling-Shutter-Webcam: Vibration + Fahrt = schräge Kennzeichen, OCR bricht ein.
 
 ### 2.2 Positionierung
 
-* **RTK-GNSS:** u-blox ZED-F9P, Multiband, GPS+GLONASS+Galileo+BeiDou gleichzeitig, cm-Genauigkeit mit Korrekturdaten, bis 10–20 Hz [8][9]. Antenne: u-blox ANN-MB oder Ardusimple Tripleband auf Groundplane.
-* **Korrektur:** NTRIP via LTE (SAPOS BW/DE), Fallback PPP-RTK ohne Basis (längere Konvergenz, für Test ok [10]).
+* **RTK-GNSS:** u-blox ZED-F9P, Multiband, GPS+GLONASS+Galileo+BeiDou gleichzeitig, cm-Genauigkeit mit Korrekturdaten, bis 10–20 Hz [^8][^9]. Antenne: u-blox ANN-MB oder Ardusimple Tripleband auf Groundplane.
+* **Korrektur:** NTRIP via LTE (SAPOS BW/DE), Fallback PPP-RTK ohne Basis (längere Konvergenz, für Test ok [^10]).
 * **IMU:** Bosch BNO085 (Neigung/Kompass) oder VectorNav VN-100 (ab LiDAR-Phase). Montage starr auf Sensorplatte, Achsen dokumentieren.
 * **Odometrie:** Reed/Hall am Hinterrad + E-Bike-Tacho. Überbrückt GNSS-Schatten (Häuserschluchten) für 10–30 s.
 * **Zeitsync:** GNSS-PPS → PTP-Master auf Compute, Kameras via Software-PTP ( GigE) oder Trigger-Board (z. B. Arducam Trigger). Ziel <5 ms Offset, sonst Pose↔Bild-Versatz bei 5 m/s = 2,5 cm pro ms.
 
-Praxis-Hinweis: USB3 stört GNSS L1/L2 – Kabel schirmen, Antenne weg von Compute verlegen [6].
+Praxis-Hinweis: USB3 stört GNSS L1/L2 – Kabel schirmen, Antenne weg von Compute verlegen [^6].
 
 ### 2.3 Abstand/Geometrie (optional Phase 3)
 
@@ -115,7 +115,7 @@ Praxis-Hinweis: USB3 stört GNSS L1/L2 – Kabel schirmen, Antenne weg von Compu
 
 | Verbraucher | Leistung | Bemerkung |
 |---|---|---|
-| Jetson Orin NX 16 GB (10–25 W, bis 100 TOPS [11]) | 25 W peak / 18 W avg | + Super-Modus bis 40 W möglich [12], aber thermisch meiden |
+| Jetson Orin NX 16 GB (10–25 W, bis 100 TOPS [^11]) | 25 W peak / 18 W avg | + Super-Modus bis 40 W möglich [^12], aber thermisch meiden |
 | 4× Kamera PoE | 4×4 W = 16 W | |
 | PoE-Switch | 8 W | |
 | LTE-Router | 10 W | |
@@ -188,15 +188,15 @@ Umschaltung per beleuchtetem Wahlschalter am Lenker + Bestätigungstaster (Zweih
 
 ## Quellen
 
-[1] Bakfiets.nl – Cargobike Models: Trike stabil im Stillstand/langsam. https://www.bakfiets.nl/en-en/models
-[2] Bakfiets.nl – E-CargoTrike Classic Wide: 210×85 cm, Boden 86×65 cm. https://www.bakfiets.nl/en-en/models/electric-cargo-trike/wide/classic
-[3] Bakfix – CargoTrike Classic Wide: 210×95 cm. https://bakfix.com/en/bakfiets-nl-cargotrike-classic-wide-trike-2-50261
-[4] e-lastenrad.de – Bakfiets Classic Wide ohne E-Antrieb, >50 kg. https://www.e-lastenrad.de/bakfiets-cargotrike
-[5] Wikipedia – Cargo bike: Trikes 100–300 kg, ~1 m³. https://en.wikipedia.org/wiki/Cargo_bike
-[6] u-blox Community – GNSS-Interferenz durch Intel RealSense/USB3-Kompakt-Rover. https://portal.u-blox.com/s/question/0D5Oj00000r21SyKAI/ublox-zedf9p-how-to-mitigate-gnss-interference-from-intel-realsense-d405-in-ultracompact-rover
-[7] Jens / Symphony ALPR – IR-Blitz + Filter für Kennzeichenkameras (Video-Transkript). https://www.youtube.com/watch?v=34LGZIObibE
-[8] u-blox ZED-F9P Datasheet: Multiband RTK, alle 4 Konstellationen gleichzeitig, cm-Genauigkeit. https://content.u-blox.com/sites/default/files/ZED-F9P-04B_DataSheet_UBX-21044850.pdf
-[9] u-blox/NVIDIA Partnership: ZED-F9 RTK cm-genau, robust. https://www.u-blox.com/en/partnerships/nvidia
-[10] MDPI Sensors – Low-Cost GNSS PPP-RTK mit ZED-F9P: PPP-RTK ohne Basis möglich, Konvergenzzeit beachten. https://www.mdpi.com/1424-8220/23/13/6074
-[11] NVIDIA – Jetson Orin NX bis 100 TOPS bei 10–25 W; Nano bis 40 TOPS bei 7–15 W. https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin
-[12] Syslogic – Jetson Orin Super Mode: Nano 67 TOPS/25 W, NX 157 TOPS/40 W, höhere Taktraten. https://www.syslogic.com/blog/jetson-orin-nano-nx-nvidia-performance-boost-opens-up-new-possibilities
+[^1]: Bakfiets.nl – Cargobike Models: Trike stabil im Stillstand/langsam. <https://www.bakfiets.nl/en-en/models>
+[^2]: Bakfiets.nl – E-CargoTrike Classic Wide: 210×85 cm, Boden 86×65 cm. <https://www.bakfiets.nl/en-en/models/electric-cargo-trike/wide/classic>
+[^3]: Bakfix – CargoTrike Classic Wide: 210×95 cm. <https://bakfix.com/en/bakfiets-nl-cargotrike-classic-wide-trike-2-50261>
+[^4]: e-lastenrad.de – Bakfiets Classic Wide ohne E-Antrieb, >50 kg. <https://www.e-lastenrad.de/bakfiets-cargotrike>
+[^5]: Wikipedia – Cargo bike: Trikes 100–300 kg, ~1 m³. <https://en.wikipedia.org/wiki/Cargo_bike>
+[^6]: u-blox Community – GNSS-Interferenz durch Intel RealSense/USB3-Kompakt-Rover. <https://portal.u-blox.com/s/question/0D5Oj00000r21SyKAI/ublox-zedf9p-how-to-mitigate-gnss-interference-from-intel-realsense-d405-in-ultracompact-rover>
+[^7]: Jens / Symphony ALPR – IR-Blitz + Filter für Kennzeichenkameras (Video-Transkript). <https://www.youtube.com/watch?v=34LGZIObibE>
+[^8]: u-blox ZED-F9P Datasheet: Multiband RTK, alle 4 Konstellationen gleichzeitig, cm-Genauigkeit. <https://content.u-blox.com/sites/default/files/ZED-F9P-04B_DataSheet_UBX-21044850.pdf>
+[^9]: u-blox/NVIDIA Partnership: ZED-F9 RTK cm-genau, robust. <https://www.u-blox.com/en/partnerships/nvidia>
+[^10]: MDPI Sensors – Low-Cost GNSS PPP-RTK mit ZED-F9P: PPP-RTK ohne Basis möglich, Konvergenzzeit beachten. <https://www.mdpi.com/1424-8220/23/13/6074>
+[^11]: NVIDIA – Jetson Orin NX bis 100 TOPS bei 10–25 W; Nano bis 40 TOPS bei 7–15 W. <https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin>
+[^12]: Syslogic – Jetson Orin Super Mode: Nano 67 TOPS/25 W, NX 157 TOPS/40 W, höhere Taktraten. <https://www.syslogic.com/blog/jetson-orin-nano-nx-nvidia-performance-boost-opens-up-new-possibilities>
