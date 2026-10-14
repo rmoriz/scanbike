@@ -24,7 +24,7 @@ Nacht-/Regenbetrieb, Live-Erkennung. Alles außerhalb der PPK-Toleranz ist „un
 | Position, cm-genau (nach der Fahrt) | u-blox M8T (Rohdaten) + PPK mit RTKLIB + SAPOS-RINEX, Details Abschnitt 5 | ~50 € gebraucht | RTK-Puck ZED-F9P ~300 € (erst ab Iteration 3 nötig) |
 | Position, robust (während der Fahrt) | Multi-GNSS-Merge: Hero-8-GPS + Handy + M8T loggen, besten Track nehmen | 0 € | — |
 | Strom | 2× Ersatzakku + Powerbank, Dauer-USB am Stand | ~50 € | — |
-| Halterung | 1,4-m-Stange (360) + Alu-Winkel auf Box, Moosgummi-Dämpfung | ~40 € | — |
+| Halterung (T-Riegel, siehe unten) | Querbalken 95–100 cm + Längsbalken 60 cm, Alu 20×20, 2 Spanngurte | ~40 € | — |
 
 **~450-€-Kernpaket:** X3 + Hero 10 gebraucht. Mit M8T-PPK ~500 €, mit Handy-GPS-Merge ~450 €.
 
@@ -37,6 +37,16 @@ Zwei gleiche Kameras gratis sind besser als jede Kaufempfehlung:
 * **Kosten:** nur noch M8T-PPK (~50 €) + Halter/Strom (~90 €) = **~140 €**; ganz ohne Neuteile (Handy-GPS-Merge) **~90 €**. RTK-Puck erst ab Iteration 3 nötig.
 * Beide Hero 8 per App/Remote gleichzeitig starten, dazu weiter Klatsch-Sync (Abschnitt 4).
 * 360-Kamera entfällt — Reframing-Workflow entfällt ebenfalls, dafür zwei normale MP4-Files.
+
+### T-Riegel: die PoC-Halterung (ein Nachmittag, ~40 €)
+
+Statt gedämpftem Wechsel-Rack (erst ab Jetson-Stufe nötig, siehe `SCANBIKE_Rack_Schema.svg`):
+ein T aus 2× Alu-Profil 20×20, das von oben auf den Bord gelegt wird.
+
+* **Querbalken ~95–100 cm** über den Bord: steht beidseitig über, Seitenkameras schauen dadurch an den breiten hinteren Ecken vorbei. **Längsbalken ~60 cm** nach vorne für die Frontkamera über den schmalen Bug. Verbunden mit 2 Winkelblechen.
+* **4 Gummifüße** (Türstopper) als Kontakt zum Bordrand, **2 Spanngurte** um die Box gegen Verrutschen/Abheben. Kein Bohren, keine Pfannen.
+* Kameras auf Kugelköpfen oder festen 15°-Winkeln (Neigung: Platte auf 1–3 m in Bildmitte, per Testfahrt prüfen, siehe Abschnitt 3). GoPros nehmen intern auf → **null Verkabelung**, Powerbanks lose in der Box.
+* **Abstriche (PoC-verträglich):** das T federt — Geometrie *zwischen* Kameras wackelt, egal (keine Stereo-Fusion im PoC); Wiederholgenauigkeit ±cm → pro Fahrt 30-s-Ausrichtungscheck; sieht nach Bastel aus (für privaten Prototyp ok).
 
 **Gebrauchtkauf-Check:** Linse gegen Licht prüfen (Kratzer = Killer, bei 360-Linsen fatal fürs Stitching),
 Akkus als Verschleiß einpreisen (Blähakkus ersetzen), Dichtungen alter Geräte nicht mehr trauen —
