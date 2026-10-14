@@ -12,14 +12,14 @@ Dieses Dokument ist die Klammer über Hardware-Dokument und Software-Dokument. D
 
 ## 1. Motivation und Einordnung
 
-Scan-Cars erfassen beim Vorbeifahren bis zu 1000 Kennzeichen pro Stunde und gleichen sie mit Parkberechtigungen ab [1]. Deutsche Städte testen das seit 2025, u. a. in Baden-Württemberg an Universität Hohenheim, Heidelberg, Mannheim, Waldshut-Tiengen und Freiburg [2]. Der Fahrrad-Ansatz schließt die Lücke, die Autos nicht abdecken: Radwege, Gehwege, Einbahnstraßen gegen die Richtung, Altstadtgassen, Parks, Schulvorfelder.
+Scan-Cars erfassen beim Vorbeifahren bis zu 1000 Kennzeichen pro Stunde und gleichen sie mit Parkberechtigungen ab [^1][^14]. Deutsche Städte testen das seit 2025, u. a. in Baden-Württemberg an Universität Hohenheim, Heidelberg, Mannheim, Waldshut-Tiengen und Freiburg [^2]. Der Fahrrad-Ansatz schließt die Lücke, die Autos nicht abdecken: Radwege, Gehwege, Einbahnstraßen gegen die Richtung, Altstadtgassen, Parks, Schulvorfelder.
 
-Rechtlich neu: § 63g StVG regelt seit 01.07.2026 bundeseinheitlich Erhebung, Löschfristen und Grenzen der digitalen Parkraumkontrolle mittels Scan-Fahrzeugen [3][4]. Er unterscheidet im Kern zwei Fallgruppen, die auch das Scanbike abbilden muss:
+Rechtlich neu: § 63g StVG regelt seit 01.07.2026 bundeseinheitlich Erhebung, Löschfristen und Grenzen der digitalen Parkraumkontrolle mittels Scan-Fahrzeugen [^3][^4]. Er unterscheidet im Kern zwei Fallgruppen, die auch das Scanbike abbilden muss:
 
 1. **Parken ohne Berechtigung** (Bewohnerzone, Parkschein, E-Ladeplatz, Behindertenplatz)
 2. **Allgemein verbotswidriges Halten/Parken** (Gehweg, Radweg, Halteverbot Z. 283/286, Feuerwehrzufahrt, Kreuzungsbereich 5 m, Bordsteinabsenkung)
 
-Ein Scanbike ist rechtlich ein Scan-Fahrzeug ohne Motor – kein Sonderstatus. Die gleichen Anforderungen an Erforderlichkeit, Datenminimierung und unverzügliche Löschung bei Nichttreffern gelten [1][5].
+Ein Scanbike ist rechtlich ein Scan-Fahrzeug ohne Motor – kein Sonderstatus. Die gleichen Anforderungen an Erforderlichkeit, Datenminimierung und unverzügliche Löschung bei Nichttreffern gelten [^1][^5].
 
 ## 2. Ziele und Nicht-Ziele
 
@@ -31,13 +31,13 @@ Ein Scanbike ist rechtlich ein Scan-Fahrzeug ohne Motor – kein Sonderstatus. D
 
 **Nicht-Ziele (bewusst ausgeklammert):**
 * Geschwindigkeits- oder Rotlichtüberwachung
-* Fahndungsabgleich mit Polizeidatenbanken (vom Bundesrat diskutiert, nicht beschlossen) [6]
+* Fahndungsabgleich mit Polizeidatenbanken (vom Bundesrat diskutiert, nicht beschlossen) [^6]
 * Dauer-Videoüberwachung des öffentlichen Raums
 * Privates Inkasso ohne kommunalen Auftrag
 
 ## 3. Warum CargoTrike als Träger
 
-Das Bakfiets CargoTrike ist ein Lasten-Dreirad mit zwei gelenkten Vorderrädern und Box vorne. Herstellerpositionierung: steht auch im Stillstand und bei langsamer Fahrt stabil aufrecht [7]. Varianten Classic Wide: ca. 210 cm lang, ca. 85–95 cm breit, Bodenfläche Box ca. 86×65 cm [8]. Lastendreiräder tragen typischerweise 100–300 kg bei ca. 1 m³ Volumen [9].
+Das Bakfiets CargoTrike ist ein Lasten-Dreirad mit zwei gelenkten Vorderrädern und Box vorne. Herstellerpositionierung: steht auch im Stillstand und bei langsamer Fahrt stabil aufrecht [^7]. Varianten Classic Wide: ca. 210 cm lang, ca. 85–95 cm breit, Bodenfläche Box ca. 86×65 cm [^8]. Lastendreiräder tragen typischerweise 100–300 kg bei ca. 1 m³ Volumen [^9].
 
 Relevanz für Scanbike:
 
@@ -72,16 +72,16 @@ Externe Systeme:
 
 1. **Erfassung:** 2× Seite + 1× Front + 1× Heck, GNSS-RTK + IMU + Odometrie, optional LiDAR
 2. **Synchronisation:** Hardware-Trigger + PTP, gemeinsame Zeitbasis <5 ms
-3. **Anonymisierung zuerst:** Gesichter sofort blurren, Umgebung nur bei Verdacht speichern (Privacy-by-Design, vgl. Vorgehen ARGOS: Auswertung im Fahrzeug, nur Falschparker übertragen [10])
+3. **Anonymisierung zuerst:** Gesichter sofort blurren, Umgebung nur bei Verdacht speichern (Privacy-by-Design, vgl. Vorgehen ARGOS: Auswertung im Fahrzeug, nur Falschparker übertragen [^10])
 4. **Detektion Edge:** Fahrzeug-Segmentierung, Kennzeichen-Box, Schilder, Bordstein/Markierung
 5. **OCR:** Kennzeichen-Text + Konfidenz
 6. **Lokalisierung:** Pose des Scanbikes + Projektion: steht Zielfahrzeug in Verbots-Polygon?
 7. **Event-Filter:** Nur Verdacht erzeugt Evidence-Paket (2 Fotos + optional 5 s Clip + Metadaten)
 8. **Übertragung:** verschlüsselt (TLS 1.3, VPN), Warteschlange bei Funkloch
 9. **Backend-Prüfung:** GIS-Regelengine + Berechtigungsabgleich + Sachbearbeiter-Freigabe
-10. **Löschung:** Nichttreffer unverzüglich, Treffer bis Verfahrensende [2][5]
+10. **Löschung:** Nichttreffer unverzüglich, Treffer bis Verfahrensende [^2][^5]
 
-Referenz zum Stand der Technik: VITRONIC POLISCAN und Jenoptik VECTOR lesen Kennzeichen mehrspurig auch bei Fahrt und schlechtem Wetter [11][12]. Scanbike übernimmt das Prinzip, aber bei niedriger Geschwindigkeit und kürzerer Distanz (3–8 m statt 10–30 m).
+Referenz zum Stand der Technik: VITRONIC POLISCAN und Jenoptik VECTOR lesen Kennzeichen mehrspurig auch bei Fahrt und schlechtem Wetter [^11][^12]. Scanbike übernimmt das Prinzip, aber bei niedriger Geschwindigkeit und kürzerer Distanz (3–8 m statt 10–30 m).
 
 ## 6. Datenfluss und Evidence-Paket
 
@@ -101,8 +101,8 @@ Pro Verdachtsfall genau ein Paket:
 ```
 
 * Bilder: Kontext (Fahrzeug + Umgebung) + Crop (Kennzeichen lesbar)
-* Kein Dauerupload. Praxisvorgabe aus BW-Pilot: Kennzeichen verschlüsselt, Personen unkenntlich, keine Zweckentfremdung [2]
-* ADAC-Zusammenfassung: nur erforderliche Daten, Zweckbindung Parkvorschriften [1]
+* Kein Dauerupload. Praxisvorgabe aus BW-Pilot: Kennzeichen verschlüsselt, Personen unkenntlich, keine Zweckentfremdung [^2]
+* ADAC-Zusammenfassung: nur erforderliche Daten, Zweckbindung Parkvorschriften [^1]
 
 ## 7. Betriebsmodell
 
@@ -115,12 +115,12 @@ Pro Verdachtsfall genau ein Paket:
 
 Pflicht vor Pilotbetrieb:
 
-* Rechtsgrundlage dokumentieren (§ 63g StVG + Landesrecht, z. B. Landesmobilitätsgesetz BW seit 03/2025 [2]), Zuständigkeit der Kommune
+* Rechtsgrundlage dokumentieren (§ 63g StVG + Landesrecht, z. B. Landesmobilitätsgesetz BW seit 03/2025 [^2]), Zuständigkeit der Kommune
 * Datenschutz-Folgenabschätzung (DSFA), AV-Vertrag, Löschkonzept
-* Keine automatisierte Entscheidung i. S. v. Art. 22 DSGVO ohne menschliche Prüfung [13]
+* Keine automatisierte Entscheidung i. S. v. Art. 22 DSGVO ohne menschliche Prüfung [^13]
 * Kennzeichnung am Rad („Kommunale Parkraumkontrolle – Kameraaufzeichnung“), Info-Datenschutzerklärung per QR
-* Speicher: Treffer bis Verfahrensende, Nichttreffer sofort löschen [2]
-* Kritikpunkt aus Datenschutzsicht ausführlich bei dsn-group [5]: Erforderlichkeit, Verhältnismäßigkeit, keine flächendeckende Bewegungsprofile
+* Speicher: Treffer bis Verfahrensende, Nichttreffer sofort löschen [^2]
+* Kritikpunkt aus Datenschutzsicht ausführlich bei dsn-group [^5]: Erforderlichkeit, Verhältnismäßigkeit, keine flächendeckende Bewegungsprofile
 
 Empfehlung: erst stationärer Test mit verpixelten Kennzeichen + DSB-Freigabe, dann Straßentest in einer Bewohnerzone.
 
@@ -146,17 +146,17 @@ Empfehlung: erst stationärer Test mit verpixelten Kennzeichen + DSB-Freigabe, d
 
 ## Quellen
 
-[1] ADAC – Scan Cars: Was ist erlaubt? Regeln und Datenschutz – Rechtsgrundlage § 63g StVG, bis 1000 Kennzeichen/h, Kennzeichen als personenbezogene Daten, Datenminimierung. https://www.adac.de/verkehr/recht/verkehrsvorschriften-deutschland/scan-cars-was-ist-erlaubt
-[2] Ministerium für Verkehr Baden-Württemberg – Scan-Fahrzeuge im Praxistest: erfasste Daten (Bild, Kennzeichen, Ort, Zeit), Verschlüsselung, Unkenntlichmachung, Speicherung nur bei Verstoß bis Verfahrensende, sonst unverzügliche Löschung; Tests Hohenheim/Heidelberg/Mannheim/Waldshut-Tiengen/Freiburg. https://vm.baden-wuerttemberg.de/de/politik-zukunft/zukunftskonzepte/digitale-mobilitaet/scan-fahrzeuge-im-praxistest-schnellere-parkraumkontrolle-in-innenstaedten
-[3] GAR NRW – Parkraumkontrolle per Scan-Fahrzeug: § 63g StVG seit 01.07.2026 bundeseinheitlich. https://gar-nrw.de/news/parkraumkontrolle-per-scan-fahrzeug-was-kommunen-jetzt-wissen-muessen
-[4] ihgp-recht – Parkraumkontrolle Digital: § 63g StVG regelt Erhebung, Löschfristen, Grenzen. https://ihgp-recht.de/parkraumkontrolle-digital
-[5] dsn-group – Scan-Cars in Deutschland: datenschutzrechtliche Einordnung § 63g StVG. https://www.dsn-group.de/datenschutz-notizen/scan-cars-in-deutschland
-[6] Bundestag Drucksache 21/3505, S. 11: Bitte um Prüfung Fahndungsabgleich in § 63g StVG. https://dserver.bundestag.de/btd/21/035/2103505.pdf
-[7] Bakfiets.nl – Cargobike Models: Trike bleibt auch im Stillstand/langsam stabil aufrecht. https://www.bakfiets.nl/en-en/models
-[8] Bakfiets.nl – E-CargoTrike Classic Wide: 210×85 cm, Boden 86×65 cm. https://www.bakfiets.nl/en-en/models/electric-cargo-trike/wide/classic
-[9] Wikipedia – Cargo bike: Trikes 100–300 kg, ~1 m³, halbe Kleintransporter-Kapazität. https://en.wikipedia.org/wiki/Cargo_bike
-[10] ARGOS Scan-Cars: Auswertung im Fahrzeug, nur Falschparker-Daten übertragen, DSGVO-konform. http://argos-cars.de
-[11] VITRONIC – Automatische Kennzeichenerkennung / POLISCAN: Lesen bei Fahrt/Stillstand, mehrere Spuren, schlechtes Wetter. https://www.vitronic.com/de-de/verkehrstechnik/automatische-kennzeichenerkennung
-[12] Jenoptik – Automatische Kennzeichenerfassung VECTOR: mehrspurige Erfassung bei hoher Geschwindigkeit. https://www.jenoptik.de/produkte/zivile-sicherheit/kennzeichenerfassung
-[13] Art. 22 DSGVO – Automatisierte Entscheidungen im Einzelfall. https://dsgvo-gesetz.de/art-22-dsgvo
-[14] WDR – Scan-Autos gegen Falschparker Modellversuch: Kennzeichen-Datenbankabgleich, Verschlüsselung, Löschung korrekt parkender Fahrzeuge. https://www1.wdr.de/nachrichten/scan-cars-falschparker-kontrollieren-100.html
+[^1]: ADAC – Scan Cars: Was ist erlaubt? Regeln und Datenschutz – Rechtsgrundlage § 63g StVG, bis 1000 Kennzeichen/h, Kennzeichen als personenbezogene Daten, Datenminimierung. <https://www.adac.de/verkehr/recht/verkehrsvorschriften-deutschland/scan-cars-was-ist-erlaubt>
+[^2]: Ministerium für Verkehr Baden-Württemberg – Scan-Fahrzeuge im Praxistest: erfasste Daten (Bild, Kennzeichen, Ort, Zeit), Verschlüsselung, Unkenntlichmachung, Speicherung nur bei Verstoß bis Verfahrensende, sonst unverzügliche Löschung; Tests Hohenheim/Heidelberg/Mannheim/Waldshut-Tiengen/Freiburg. <https://vm.baden-wuerttemberg.de/de/politik-zukunft/zukunftskonzepte/digitale-mobilitaet/scan-fahrzeuge-im-praxistest-schnellere-parkraumkontrolle-in-innenstaedten>
+[^3]: GAR NRW – Parkraumkontrolle per Scan-Fahrzeug: § 63g StVG seit 01.07.2026 bundeseinheitlich. <https://gar-nrw.de/news/parkraumkontrolle-per-scan-fahrzeug-was-kommunen-jetzt-wissen-muessen>
+[^4]: ihgp-recht – Parkraumkontrolle Digital: § 63g StVG regelt Erhebung, Löschfristen, Grenzen. <https://ihgp-recht.de/parkraumkontrolle-digital>
+[^5]: dsn-group – Scan-Cars in Deutschland: datenschutzrechtliche Einordnung § 63g StVG. <https://www.dsn-group.de/datenschutz-notizen/scan-cars-in-deutschland>
+[^6]: Bundestag Drucksache 21/3505, S. 11: Bitte um Prüfung Fahndungsabgleich in § 63g StVG. <https://dserver.bundestag.de/btd/21/035/2103505.pdf>
+[^7]: Bakfiets.nl – Cargobike Models: Trike bleibt auch im Stillstand/langsam stabil aufrecht. <https://www.bakfiets.nl/en-en/models>
+[^8]: Bakfiets.nl – E-CargoTrike Classic Wide: 210×85 cm, Boden 86×65 cm. <https://www.bakfiets.nl/en-en/models/electric-cargo-trike/wide/classic>
+[^9]: Wikipedia – Cargo bike: Trikes 100–300 kg, ~1 m³, halbe Kleintransporter-Kapazität. <https://en.wikipedia.org/wiki/Cargo_bike>
+[^10]: ARGOS Scan-Cars: Auswertung im Fahrzeug, nur Falschparker-Daten übertragen, DSGVO-konform. <http://argos-cars.de>
+[^11]: VITRONIC – Automatische Kennzeichenerkennung / POLISCAN: Lesen bei Fahrt/Stillstand, mehrere Spuren, schlechtes Wetter. <https://www.vitronic.com/de-de/verkehrstechnik/automatische-kennzeichenerkennung>
+[^12]: Jenoptik – Automatische Kennzeichenerfassung VECTOR: mehrspurige Erfassung bei hoher Geschwindigkeit. <https://www.jenoptik.de/produkte/zivile-sicherheit/kennzeichenerfassung>
+[^13]: Art. 22 DSGVO – Automatisierte Entscheidungen im Einzelfall. <https://dsgvo-gesetz.de/art-22-dsgvo>
+[^14]: WDR – Scan-Autos gegen Falschparker Modellversuch: Kennzeichen-Datenbankabgleich, Verschlüsselung, Löschung korrekt parkender Fahrzeuge. <https://www1.wdr.de/nachrichten/scan-cars-falschparker-kontrollieren-100.html>
